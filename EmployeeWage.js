@@ -4,12 +4,10 @@
 {
     const IS_ABSENT = 0;
     let empCheck = Math.floor(Math.random() * 10) % 2;
-    if(empCheck == IS_ABSENT)
-    {
+    if (empCheck == IS_ABSENT) {
         console.log("Employee is Absent. Exiting the program");
         return;
-    }else
-    {
+    } else {
         console.log("Employee is PRESENT");
     }
 }
@@ -24,7 +22,7 @@
 
     let empHrs = 0;
     let empCheck = Math.floor(Math.random() * 10) % 3;
-    switch(empCheck){
+    switch (empCheck) {
         case IS_PART_TIME:
             empHrs = PART_TIME_HOURS;
             break;
@@ -35,8 +33,8 @@
             empHrs = 0;
     }
 
-     let empWage = empHrs * WAGE_PER_HOUR;
-     console.log("Employee Wage :"+empWage);
+    let empWage = empHrs * WAGE_PER_HOUR;
+    console.log("Employee Wage :" + empWage);
 }
 
 //Refactor the code to write a function to get work hours
@@ -47,19 +45,32 @@
     const FULL_TIME_HOURS = 8;
     const WAGE_PER_HOUR = 20;
 
-    function getWorkingHours(empCheck){
-    switch(empCheck){
-        case IS_PART_TIME:
-            return PART_TIME_HOURS;
-        case IS_FULL_TIME:
-            return FULL_TIME_HOURS;
-        default:
-            return 0;
+    function getWorkingHours(empCheck) {
+        switch (empCheck) {
+            case IS_PART_TIME:
+                return PART_TIME_HOURS;
+            case IS_FULL_TIME:
+                return FULL_TIME_HOURS;
+            default:
+                return 0;
+        }
     }
-}
     let empHrs = 0;
     let empCheck = Math.floor(Math.random() * 10) % 3;
     empHrs = getWorkingHours(empCheck);
     let empWage = empHrs * WAGE_PER_HOUR;
-    console.log("Employee Wage(using function) :"+empWage);
+    console.log("Employee Wage(using function) :" + empWage);
+}
+
+//Calculating wages for a month assuming 20 working days
+{
+    const NO_OF_WORKING_DAYS = 20;
+    const WAGE_PER_HOUR = 20;
+    let totalEmpHrs = 0;
+    for (let day = 0; day < NO_OF_WORKING_DAYS; day++) {
+        let empCheck = Math.floor(Math.random() * 10) % 3;
+        totalEmpHrs += getWorkingHours(empCheck);
+    }
+    let empWage = totalEmpHrs * WAGE_PER_HOUR;
+    console.log("Total hours worked in a month " + totalEmpHrs + " Employee Wage for month " + empWage);
 }
