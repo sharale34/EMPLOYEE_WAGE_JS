@@ -37,9 +37,14 @@
         return empHrs * WAGE_PER_HOUR;
     }
 
+    function totalWages(totalWage, dailyWage){
+        return totalWage+dailyWage;
+    }
+
     let totalEmpHrs = 0;
     let totalWorkingDays = 0;
     let empDailyWageArr = new Array();
+    let empDailyWageMap = new Map();
 
     while (totalEmpHrs <= MAX_HRS_IN_MONTH && totalWorkingDays < NO_OF_WORKING_DAYS) {
         totalWorkingDays++;
@@ -48,7 +53,10 @@
         totalEmpHrs += empHrs;
         // Appends new elements to an array, and returns the new length of the array
         empDailyWageArr.push(calcDailyWage(empHrs));
+        // Storing day and daily wage along with total wage
+        empDailyWageMap.set(totalWorkingDays, calcDailyWage(empHrs));
     }
+    console.log(empDailyWageMap);
     let empWage = calcDailyWage(totalEmpHrs);
     console.log("UC-6 Total days worked " + totalWorkingDays + " Total hours worked " + totalEmpHrs + " Employee Wage " + empWage);
 
@@ -60,13 +68,6 @@
     }
     empDailyWageArr.forEach(sum); //forEach calls the function sum one time for each element in the array
     console.log("UC-7A Total Days Worked: " + totalWorkingDays + " Total Hrs Worked " + totalEmpHrs + " Emp Wage " + totEmpWage);
-
-    //UC 7A - Calculate total wage using Array reduce method
-    function totalWages(totalWage, dailyWage) {
-        return totalWage + dailyWage;
-    }
-    //The return value of the function is the accumulated result, and is provided as an argument in the next call to the function.
-    console.log("UC-7A Emp Wage with reduce: " + empDailyWageArr.reduce(totalWages, 0));
 
     // UC-7B Show the Day along with Daily Wage using Array Map helper function
     let dailyCounter = 0;
@@ -111,4 +112,5 @@
         return numOfDays;
     }
     console.log("UC-7G Find the no.of days the Employee Worked: " + empDailyWageArr.reduce(totalDaysWorked, 0));
+    console.log("UC8- Employee Wage Map totalHrs: " + Array.from(empDailyWageMap.values()).reduce(totalWages, 0));
 }
