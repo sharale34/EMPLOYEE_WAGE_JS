@@ -140,4 +140,27 @@
     console.log("Full working days: " + fullWorkingDays);
     console.log("Part working days: " + partWorkingDays);
     console.log("Non working days: " + notWorkingDays);
+
+
+    // Ability to store the Day, Hours Worked and Wage Earned in a single object.
+
+    let employeeHours = 0;
+    let employeeWorkingDays = 0;
+    let employeeDailyHoursAndWageArray = new Array();
+    while (employeeHours <= MAX_HRS_IN_MONTH && employeeWorkingDays < NO_OF_WORKING_DAYS) {
+        employeeWorkingDays++;
+        let employeeCheck = Math.floor(Math.random() * 10) % 3;
+        let employeeWorkingHours = getWorkingHours(employeeCheck);
+        employeeHours += employeeWorkingHours;
+        employeeDailyHoursAndWageArray.push(
+            {
+                dayCount: employeeWorkingDays,
+                dailyHours: employeeWorkingHours,
+                dailyWages: calcDailyWage(employeeWorkingHours),
+                toString() {
+                    return "\nDay" + this.dayCount + " => Working Hours is: " + this.dailyHours + " Wage earned = " + this.dailyWages
+                },
+            });
+    }
+    console.log("UC10 Showing daily hours worked and wage earned: " + employeeDailyHoursAndWageArray);
 }
